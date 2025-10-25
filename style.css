@@ -17,7 +17,7 @@
             --dark-gray: #333;
         }
 
-        /* Header & Navigation */
+       /* Header & Navigation */
         header {
             background: linear-gradient(135deg, var(--primary-red) 0%, var(--secondary-red) 100%);
             color: white;
@@ -622,7 +622,7 @@
             }
         }
 
-        /* Responsive - Mobile */
+       /* Responsive - Mobile */
         @media (max-width: 768px) {
             nav {
                 padding: 0 1.5rem;
