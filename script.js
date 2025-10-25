@@ -1,17 +1,27 @@
 // Mobile Menu Toggle
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
+        const body = document.body;
 
         menuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             menuToggle.classList.toggle('active');
+            
+            // Toggle body scroll
+            if (navLinks.classList.contains('active')) {
+                body.style.overflow = 'hidden';
+            } else {
+                body.style.overflow = '';
+            }
         });
 
         // Close menu when clicking on a link
         document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
+            link.addEventListener('click', (e) => {
+                // Close menu immediately
                 navLinks.classList.remove('active');
                 menuToggle.classList.remove('active');
+                body.style.overflow = '';
             });
         });
 
@@ -20,6 +30,7 @@
             if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
                 navLinks.classList.remove('active');
                 menuToggle.classList.remove('active');
+                body.style.overflow = '';
             }
         });
 
@@ -27,16 +38,23 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
+                
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
+                    // Ensure body can scroll before smooth scrolling
+                    body.style.overflow = '';
+                    
                     const headerOffset = 80;
                     const elementPosition = target.getBoundingClientRect().top;
                     const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
+                    // Small delay to ensure overflow is reset
+                    setTimeout(() => {
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }, 50);
                 }
             });
         });
@@ -76,16 +94,6 @@
             card.style.transform = 'translateY(30px)';
             card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(card);
-        });
-
-        // Prevent body scroll when mobile menu is open
-        const body = document.body;
-        menuToggle.addEventListener('click', () => {
-            if (navLinks.classList.contains('active')) {
-                body.style.overflow = 'hidden';
-            } else {
-                body.style.overflow = '';
-            }
         });
 
         // Reset body scroll on window resize
