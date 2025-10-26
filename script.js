@@ -148,7 +148,7 @@
                 slideIndex++;
                 showSlides(slideIndex);
                 autoSlide();
-            }, 5000); // Change slide every 5 seconds
+            }, 2500); // Change slide every 5 seconds
         }
 
         // Touch events for mobile swipe
@@ -174,3 +174,4 @@
                 changeSlide(-1); // Swipe right
             }
         }
+
