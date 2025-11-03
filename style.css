@@ -109,7 +109,7 @@
         /* Hero Section */
         .hero {
             position: relative;
-            background: url('image/foto2.jpeg') no-repeat center center;
+            background: url('image/foto5.jpeg') no-repeat center center;
             background-size: cover;
             background-attachment: fixed;
             color: white;
@@ -872,3 +872,4 @@
                 padding: 1.1rem 1.8rem;
             }
         }
+
